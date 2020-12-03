@@ -20,7 +20,7 @@ public class ProductPage{
     @FindBy(className = "add_button")
     private WebElement addButton;
 
-    @FindBy(css = "body > div.container.clearfix > header > div.user_int_new > div.item.cart > a > i")
+    @FindBy(xpath = "//*[@id=\'fc\']/nav/div[2]")
     private WebElement cartLink;
 
     public ProductPage(WebDriver driver){
