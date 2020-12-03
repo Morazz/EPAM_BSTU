@@ -28,7 +28,7 @@ public class PageObjectTest {
         driver.manage().window().maximize();
     }
 
-    @Test
+   @Test
     public void addToCartAndGetSubtotalValueTest() {
         double expectedSubtotalValue = new HomePage(driver)
                 .openPage()
@@ -37,19 +37,19 @@ public class PageObjectTest {
                 .addAndGoToCart("50")
                 .getSubtotalValue();
 
-        Assert.assertEquals("160", expectedSubtotalValue);
+        Assert.assertEquals(160.0, expectedSubtotalValue, 0.001);
     }
 
     @Test
-    public void addToCartTest() {
-        int expectedItemsAmount = new HomePage(driver)
+    public void addToCartAndHasNoFreeItemTest() {
+        boolean expectedFreeItem = new HomePage(driver)
                 .openPage()
                 .searchForTerms("wood")
                 .selectProduct()
-                .addAndGoToCart("0")
-                .getItemsAmount();
+                .addAndGoToCart("5")
+                .checkFreeGift();
 
-        Assert.assertEquals("51", expectedItemsAmount);
+        Assert.assertFalse(expectedFreeItem);
     }
 
     @AfterMethod(alwaysRun = true)
